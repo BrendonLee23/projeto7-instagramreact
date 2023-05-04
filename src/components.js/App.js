@@ -1,10 +1,9 @@
-import React from "react";
-import ReactDOM from "react-dom";
+
 import NavBar from "./NavBar";
 import Body from "./Body";
 
 
-function App() {
+export default function App() {
     return (
         <div>
             <NavBar/>
@@ -12,9 +11,3 @@ function App() {
         </div>
     )
 }
-
-
-
-const elementoRoot = document.querySelector(".root")
-
-ReactDOM.render(App(), elementoRoot);
