@@ -1,45 +1,72 @@
+import { useState } from "react";
+
 export default function Posts() {
+
+    const [bookmarkIcon, setBookmarkIcon] = useState("bookmark-outline");
+    const [heartIcon, setHeartIcon] = useState("heart-outline");
+    const [heartClass, setHeartClass] = useState("heart-black");
+
+    const changeSave = (iconName) => {
+        if (iconName === "bookmark") {
+            setBookmarkIcon(bookmarkIcon === "bookmark-outline" ? "bookmark" : "bookmark-outline");
+        }
+    };
+
+    const changeLike = (iconName) => {
+        if (iconName === "heart") {
+            setHeartIcon(heartIcon === "heart-outline" ? "heart" : "heart-outline");
+            setHeartClass("heart-red"); // adiciona a classe CSS dinamicamente
+        } else {
+            setHeartClass(""); // remove a classe CSS
+        }
+    };
+    const imageClick = () => {
+        changeLike("heart");
+    };
+
+    
     return (
         <div class="posts">
 
             {postList.map(item =>
-                < div class="post" >
+                < div data-test="post" class="post" >
 
                     <div class="topo">
                         <div class="usuario">
                             <img src={item.topo.usuario.imagem} alt={item.topo.usuario.alt} />
                             {item.topo.usuario.texto}
+
                         </div>
                         <div class="acoes">
                             <ion-icon name={item.topo.acoes.icon}></ion-icon>
                         </div>
                     </div>
 
-                    <div class="conteudo">
-                        <img src={item.conteudo.imagem} alt={item.conteudo.alt} />
+                    <div  class="conteudo">
+                        <img data-test="post-image" onClick={imageClick} src={item.conteudo.imagem} alt={item.conteudo.alt} />
                     </div>
 
                     <div class="fundo">
                         <div class="acoes">
                             <div>
-                                <ion-icon name={item.fundo.acoes.icon1}></ion-icon>
+                                <span className={heartClass} ><ion-icon data-test="like-post" name={heartIcon} onClick={() => changeLike("heart")} ></ion-icon></span>
                                 <ion-icon name={item.fundo.acoes.icon2}></ion-icon>
                                 <ion-icon name={item.fundo.acoes.icon3}></ion-icon>
                             </div>
                             <div>
-                                <ion-icon name="bookmark-outline"></ion-icon>
+                                <ion-icon data-test="save-post" name={bookmarkIcon} onClick={() => changeSave("bookmark")}></ion-icon>
                             </div>
                         </div>
                         <div class="curtidas">
                             <img src={item.fundo.curtidas.imagem} alt={item.fundo.curtidas.alt} />
                             <div class="texto">
-                                Curtido por <strong>{item.fundo.curtidas.texto.usuario}</strong> e <strong>{item.fundo.curtidas.texto.pessoas}</strong>
+                                Curtido por <strong>{item.fundo.curtidas.texto.usuario}</strong> e <strong test="likes-number">{item.fundo.curtidas.texto.pessoas}</strong>
                             </div>
                         </div>
                     </div>
                 </div >
             )}
-{/*             <div class="post">
+            {/*             <div class="post">
                 <div class="topo">
                     <div class="usuario">
                         <img src="assets/img/meowed.svg" alt="meowed" />
@@ -142,6 +169,7 @@ export default function Posts() {
 
 const postList = [
     {
+        id: 1,
         topo:
         {
             usuario:
@@ -164,7 +192,10 @@ const postList = [
         {
             acoes:
             {
-                icon1: "heart-outline",
+                heartIcon: { // Adiciona o ID ao ícone "heart-outline"
+                    id: "heart-icon",
+                    icon: "heart-outline",
+                },
                 icon2: "chatbubble-outline",
                 icon3: "paper-plane-outline",
             },
@@ -181,6 +212,7 @@ const postList = [
         },
     },
     {
+        id: 2,
         topo:
         {
             usuario:
@@ -203,7 +235,10 @@ const postList = [
         {
             acoes:
             {
-                icon1: "heart-outline",
+                heartIcon: { // Adiciona o ID ao ícone "heart-outline"
+                    id: "heart-icon",
+                    icon: "heart-outline",
+                },
                 icon2: "chatbubble-outline",
                 icon3: "paper-plane-outline",
             },
@@ -220,6 +255,7 @@ const postList = [
         },
     },
     {
+        id: 3,
         topo:
         {
             usuario:
@@ -242,7 +278,10 @@ const postList = [
         {
             acoes:
             {
-                icon1: "heart-outline",
+                heartIcon: { // Adiciona o ID ao ícone "heart-outline"
+                    id: "heart-icon",
+                    icon: "heart-outline",
+                },
                 icon2: "chatbubble-outline",
                 icon3: "paper-plane-outline",
             },

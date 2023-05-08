@@ -305,3 +305,11 @@ ion-icon {
   color: black;
 }
 
+.heart-red {
+  color: red;
+  border-color: black;
+}
+.heart-black {
+  color: black;
+  border-color: black;
+}
