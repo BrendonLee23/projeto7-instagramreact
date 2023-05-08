@@ -310,6 +310,9 @@ ion-icon {
   border-color: black;
 }
 .heart-black {
-  color: black;
   border-color: black;
+}
+
+.none{
+  display: none;
 }
