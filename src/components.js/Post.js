@@ -6,6 +6,7 @@ export default function Post(){
     const [heartIcon, setHeartIcon] = useState("heart-outline");
     const [heartClass, setHeartClass] = useState("heart-black");
 
+
     const changeSave = (iconName) => {
         if (iconName === "bookmark") {
             setBookmarkIcon(bookmarkIcon === "bookmark-outline" ? "bookmark" : "bookmark-outline");
@@ -15,16 +16,17 @@ export default function Post(){
     const changeLike = () => {
         if (heartIcon === "heart-outline" && heartClass === "heart-black") {
             setHeartIcon("heart");
-            setHeartClass("heart-red"); // adiciona a classe CSS dinamicamente
+            setHeartClass("heart-red");// adiciona a classe CSS dinamicamente
+            
         } else {
             setHeartIcon("heart-outline");
             setHeartClass("heart-black") // remove a classe CSS
         }
     };
     const imageClick = () => {
-        changeLike("heart");
+        setHeartIcon("heart");
+        setHeartClass("heart-red");
     };
-
 
     return(
         postList.map(item =>
@@ -59,7 +61,7 @@ export default function Post(){
                     <div class="curtidas">
                         <img src={item.fundo.curtidas.imagem} alt={item.fundo.curtidas.alt} />
                         <div class="texto">
-                            Curtido por <strong>{item.fundo.curtidas.texto.usuario}</strong> e <strong test="likes-number">{item.fundo.curtidas.texto.pessoas}</strong>
+                            Curtido por <strong>{item.fundo.curtidas.texto.usuario}</strong> e <strong test="likes-number">outras {item.fundo.curtidas.texto.pessoas } pessoas</strong>
                         </div>
                     </div>
                 </div>
@@ -112,7 +114,7 @@ const postList = [
                 texto:
                 {
                     usuario: "respondeai",
-                    pessoas: "outras 101.523 pessoas"
+                    pessoas: 101.523
                 }
             }
         },
@@ -123,7 +125,7 @@ const postList = [
         {
             usuario:
             {
-                imagem: "assets/img/dog.svg",
+                imagem: "assets/img/barked.svg",
                 alt: "barked",
                 texto: "barked"
             },
@@ -155,7 +157,7 @@ const postList = [
                 texto:
                 {
                     usuario: "adorable_animals",
-                    pessoas: "outras 99.159 pessoas"
+                    pessoas: 99.159
                 }
             }
         },
@@ -198,7 +200,7 @@ const postList = [
                 texto:
                 {
                     usuario: "respondeai",
-                    pessoas: "outras 101.523 pessoas"
+                    pessoas: 101.523
                 }
             }
         }
